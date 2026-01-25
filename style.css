@@ -61,6 +61,7 @@ body {
   background-position: center;
   transition: 0.3s ease;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .full-screen-button:active, .download-button:active, .next-button:active{
