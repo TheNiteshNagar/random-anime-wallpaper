@@ -1,21 +1,22 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root{
+:root {
   --primary-bg-color: #000000;
   --secondary-bg-color: #9929EA;
   --primary-font-color: #FF5FCF;
   --secondary-font-color: #FAEB92;
 }
 
-body{
+body {
   background-color: var(--primary-bg-color);
+  position: relative;
 }
 
-.album{
+.album {
   height: 100dvh;
   width: 100%;
   display: flex;
@@ -24,7 +25,7 @@ body{
   gap: 1em;
 }
 
-.anime-pic{
+.anime-pic {
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: inherit;
@@ -33,8 +34,65 @@ body{
   background-repeat: no-repeat;
 }
 
-@media screen and (min-width: 600px){
-  .anime-pic{
+.navbar {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  translate: -50% -50%;
+  width: 90%;
+  height: 10vh;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.full-screen-button,
+.download-button,
+.next-button {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  border: 0.9px solid white;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: 0.3s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.full-screen-button:active, .download-button:active, .next-button:active{
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.full-screen-button {
+  background-image: url('https://img.icons8.com/?size=100&id=z6DZnPaPmQ2G&format=png&color=000000');
+}
+
+.download-button {
+  background-image: url('https://img.icons8.com/?size=100&id=12071&format=png&color=000000');
+}
+
+.next-button {
+  background-image: url('https://img.icons8.com/?size=100&id=49411&format=png&color=000000');
+}
+
+@media screen and (min-width: 600px) {
+  .anime-pic {
     width: clamp(600px, 10vw, 900px);
+  }
+
+  .navbar {
+    width: clamp(600px, 10vw, 900px);
+  }
+
+  .full-screen-button,
+  .download-button,
+  .next-button {
+    width: 3.5em;
+    height: 3.5em;
   }
 }

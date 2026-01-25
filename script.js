@@ -20,8 +20,23 @@ window.addEventListener('DOMContentLoaded', async () => {
   document.querySelector('.anime-pic').style.backgroundImage = `url(${animeURL})`
 })
 
-// get a new anime image user click on body
-document.querySelector('body').addEventListener('click', async () => {
+// get a new anime image user click on album element
+document.querySelector('.album').addEventListener('click', async () => {
   const animeURL = await getAnime()
   document.querySelector('.anime-pic').style.backgroundImage = `url(${animeURL})`    
+})
+
+// get a new anime image user click on album next button
+document.querySelector('.next-button').addEventListener('click', async () => {
+  const animeURL = await getAnime()
+  document.querySelector('.anime-pic').style.backgroundImage = `url(${animeURL})`    
+})
+
+// enter in full screen mode when click on full screen button
+document.querySelector('.full-screen-button').addEventListener('click', ()=>{
+  if(document.fullscreenElement){
+    document.exitFullscreen()
+  } else{
+    document.body.requestFullscreen()
+  }
 })
