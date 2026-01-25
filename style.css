@@ -41,7 +41,7 @@ body {
   translate: -50% -50%;
   width: 90%;
   height: 10vh;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 5em;
   display: flex;
   justify-content: center;
@@ -86,7 +86,7 @@ body {
   }
 
   .navbar {
-    width: clamp(600px, 10vw, 900px);
+    width: clamp(550px, 9vw, 850px);
   }
 
   .full-screen-button,
