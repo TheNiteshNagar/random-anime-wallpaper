@@ -1,0 +1,40 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --primary-bg-color: #000000;
+  --secondary-bg-color: #9929EA;
+  --primary-font-color: #FF5FCF;
+  --secondary-font-color: #FAEB92;
+}
+
+body{
+  background-color: var(--primary-bg-color);
+}
+
+.album{
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.anime-pic{
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: inherit;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 600px){
+  .anime-pic{
+    width: clamp(600px, 10vw, 900px);
+  }
+}
