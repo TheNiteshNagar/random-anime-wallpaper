@@ -2,6 +2,15 @@
 let nextImageURL = null    // next image
 let currentImageURL = null    // track current displayed image
 
+// set loading state
+function setLoading(isLoading) {
+  if (isLoading) {
+    document.querySelector('.anime-pic').classList.add('loading')
+  } else {
+    document.querySelector('.anime-pic').classList.remove('loading')
+  }
+}
+
 
 // generate a random category
 function getImagesCategories() {
@@ -48,6 +57,7 @@ async function fetchNextImage() {
 async function displayImage(url) {
   document.querySelector('.anime-pic').style.backgroundImage = `url(${url})`
   currentImageURL = url    // store current image url
+  setLoading(false)
   fetchNextImage()    // start fetching next image in background
 }
 
@@ -85,8 +95,12 @@ async function downloadImage() {
 }
 
 
-// show anime image when dom content loaded
+// show anime image when dom content loaded and also show spinner 
 window.addEventListener('DOMContentLoaded', async () => {
+  // on screen load first setLoading is true
+  setLoading(true)
+
+  // show anime image
   const animeURL = await getAnime()
   await preloadImage(animeURL)    // preload first image
   displayImage(animeURL)
@@ -119,6 +133,7 @@ document.querySelector('.download-button').addEventListener('click', () => {
 
 // get a new anime image user click on album next button
 document.querySelector('.next-button').addEventListener('click', async () => {
+  setLoading(true)
   if (nextImageURL) {
     displayImage(nextImageURL)
     nextImageURL = null    // clear cache
@@ -160,6 +175,7 @@ window.addEventListener('keyup', async (ev) => {
 
   // else if Space or Right key pressed go to next image
   else if (ev.code === 'Space' || ev.code === 'ArrowRight' || ev.code === 'KeyN') {
+    setLoading(true)
     if (nextImageURL) {
       displayImage(nextImageURL)
       nextImageURL = null    // clear cache

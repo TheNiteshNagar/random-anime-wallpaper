@@ -35,6 +35,27 @@ body {
   background-repeat: no-repeat;
 }
 
+.anime-pic.loading::after {
+  content: '';
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 8px solid rgba(0, 0, 0, 0);
+  border-top-color: #C850F2;
+  border-bottom-color: #C850F2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 .navbar {
   position: absolute;
   bottom: 0;
@@ -68,7 +89,9 @@ body {
   box-shadow: 0.5px 0.5px 1px #C850F2;
 }
 
-.full-screen-button:active, .download-button:active, .next-button:active{
+.full-screen-button:active,
+.download-button:active,
+.next-button:active {
   background-color: rgba(200, 80, 242, 0.5);
 }
 
