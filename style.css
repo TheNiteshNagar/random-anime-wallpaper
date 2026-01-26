@@ -27,6 +27,7 @@ body {
 
 .anime-pic {
   background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
   width: 100%;
   height: inherit;
   background-position: center;
@@ -40,13 +41,15 @@ body {
   left: 50%;
   translate: -50% -50%;
   width: 90%;
-  height: 10vh;
-  background-color: rgba(255, 255, 255, 0.4);
+  height: 8vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
   border-radius: 5em;
   display: flex;
   justify-content: center;
   align-items: center;
   justify-content: space-around;
+  box-shadow: 0.5px 0.5px 2px rgb(0, 0, 0);
 }
 
 .full-screen-button,
@@ -55,29 +58,30 @@ body {
   width: 3em;
   height: 3em;
   border-radius: 50%;
-  border: 0.9px solid white;
+  border: 0.5px solid #C850F2;
   background-size: 60%;
   background-repeat: no-repeat;
   background-position: center;
   transition: 0.3s ease;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  box-shadow: 0.5px 0.5px 1px #C850F2;
 }
 
 .full-screen-button:active, .download-button:active, .next-button:active{
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: #C850F2;
 }
 
 .full-screen-button {
-  background-image: url('https://img.icons8.com/?size=100&id=z6DZnPaPmQ2G&format=png&color=000000');
+  background-image: url('https://img.icons8.com/?size=100&id=62rUscu0psyE&format=png&color=C850F2');
 }
 
 .download-button {
-  background-image: url('https://img.icons8.com/?size=100&id=12071&format=png&color=000000');
+  background-image: url('https://img.icons8.com/?size=100&id=8ZGZTnARklCg&format=png&color=C850F2 ');
 }
 
 .next-button {
-  background-image: url('https://img.icons8.com/?size=100&id=49411&format=png&color=000000');
+  background-image: url('https://img.icons8.com/?size=100&id=9990&format=png&color=C850F2');
 }
 
 @media screen and (min-width: 600px) {
@@ -86,7 +90,8 @@ body {
   }
 
   .navbar {
-    width: clamp(600px, 10vw, 900px);
+    width: clamp(550px, 9vw, 850px);
+    height: 10vh;
   }
 
   .full-screen-button,
