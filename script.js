@@ -1,9 +1,15 @@
+// store a next image url and current displayed image
+let nextImageURL = null    // next image
+let currentImageURL = null    // track current displayed image
+
+
 // generate a random category
 function getImagesCategories() {
   const randomIndex = Math.floor(Math.random() * 4)
   const images = ['husbando', 'kitsune', 'neko', 'waifu']
   return images[randomIndex]
 }
+
 
 // get a anime url
 async function getAnime() {
@@ -14,9 +20,10 @@ async function getAnime() {
   return animeURL
 }
 
+
 // preload image to ensure it's downloaded 
 async function preloadImage(url) {
-  return new Promise((resolve, reject) =>{
+  return new Promise((resolve, reject) => {
     const img = new Image()
     img.onload = () => resolve(url)
     img.onerror = reject
@@ -24,9 +31,6 @@ async function preloadImage(url) {
   })
 }
 
-// store a next image url and current displayed image
-let nextImageURL = null    // next image
-let currentImageURL = null    // track current displayed image
 
 // fetch and cache the next image dumb as$
 async function fetchNextImage() {
@@ -39,6 +43,7 @@ async function fetchNextImage() {
   }
 }
 
+
 // display image and start fetching the next one
 async function displayImage(url) {
   document.querySelector('.anime-pic').style.backgroundImage = `url(${url})`
@@ -46,9 +51,10 @@ async function displayImage(url) {
   fetchNextImage()    // start fetching next image in background
 }
 
+
 // download current displayed image
 async function downloadImage() {
-  if(!currentImageURL) {
+  if (!currentImageURL) {
     console.log('No image to download')
     return
   }
@@ -78,6 +84,7 @@ async function downloadImage() {
   }
 }
 
+
 // show anime image when dom content loaded
 window.addEventListener('DOMContentLoaded', async () => {
   const animeURL = await getAnime()
@@ -85,16 +92,34 @@ window.addEventListener('DOMContentLoaded', async () => {
   displayImage(animeURL)
 })
 
+
 // get a uwu when user click on album element
 document.querySelector('.album').addEventListener('click', async () => {
   const uwu = new Audio('./public/audio/uwu-sound.mp3')
   uwu.currentTime = 0
-  uwu.play()  
+  uwu.play()
 })
+
+
+// enter in full screen mode when click on full screen button
+document.querySelector('.full-screen-button').addEventListener('click', () => {
+  if (document.fullscreenElement) {
+    document.exitFullscreen()
+  } else {
+    document.body.requestFullscreen()
+  }
+})
+
+
+// download anime image when user click download button
+document.querySelector('.download-button').addEventListener('click', () => {
+  downloadImage()
+})
+
 
 // get a new anime image user click on album next button
 document.querySelector('.next-button').addEventListener('click', async () => {
-  if(nextImageURL) {
+  if (nextImageURL) {
     displayImage(nextImageURL)
     nextImageURL = null    // clear cache
   } else {
@@ -109,16 +134,42 @@ document.querySelector('.next-button').addEventListener('click', async () => {
   // document.querySelector('.anime-pic').style.backgroundImage = `url(${animeURL})`    
 })
 
-// enter in full screen mode when click on full screen button
-document.querySelector('.full-screen-button').addEventListener('click', ()=>{
-  if(document.fullscreenElement){
-    document.exitFullscreen()
-  } else{
-    document.body.requestFullscreen()
-  }
-})
 
-// download anime image when user click download button
-document.querySelector('.download-button').addEventListener('click', ()=>{
-  downloadImage()
+// Keyboard Functionality
+window.addEventListener('keyup', async (ev) => {
+  // if U key is pressed get a uwu
+  if (ev.code === 'KeyU') {
+    const uwu = new Audio('./public/audio/uwu-sound.mp3')
+    uwu.currentTime = 0
+    uwu.play()
+  }
+
+  // is F key pressed toggle fullscreen
+  else if (ev.code === 'KeyF') {
+    if (document.fullscreenElement) {
+      document.exitFullscreen()
+    } else {
+      document.body.requestFullscreen()
+    }
+  }
+
+  // else if D key presses download image
+  else if (ev.code === 'KeyD') {
+    downloadImage()
+  }
+
+  // else if Space or Right key pressed go to next image
+  else if (ev.code === 'Space' || ev.code === 'ArrowRight' || ev.code === 'KeyN') {
+    if (nextImageURL) {
+      displayImage(nextImageURL)
+      nextImageURL = null    // clear cache
+    } else {
+      // fallback if prefetch hasn't completed
+      const animeURL = await getAnime()
+      await preloadImage(animeURL)
+      displayImage(animeURL)
+    }
+  }
+
+  // i can use switch but i love to use if else 👀
 })
