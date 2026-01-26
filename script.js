@@ -24,8 +24,9 @@ async function preloadImage(url) {
   })
 }
 
-// store a next image url
-let nextImageURL = null
+// store a next image url and current displayed image
+let nextImageURL = null    // next image
+let currentImageURL = null    // track current displayed image
 
 // fetch and cache the next image dumb as$
 async function fetchNextImage() {
@@ -41,7 +42,40 @@ async function fetchNextImage() {
 // display image and start fetching the next one
 async function displayImage(url) {
   document.querySelector('.anime-pic').style.backgroundImage = `url(${url})`
+  currentImageURL = url    // store current image url
   fetchNextImage()    // start fetching next image in background
+}
+
+// download current displayed image
+async function downloadImage() {
+  if(!currentImageURL) {
+    console.log('No image to download')
+    return
+  }
+
+  try {
+    // fetch the image as a blob
+    const response = await fetch(currentImageURL)
+    const blob = await response.blob()
+
+    // create a temporary URL for the blob job 🌚
+    const blobURL = window.URL.createObjectURL(blob)
+
+    // create a temporary anchor element
+    const link = document.createElement('a')
+    link.href = blobURL
+    link.download = `anime-wallpaper-${Date.now()}.jpg`    // filename with timestamp
+
+    // trigger download
+    document.body.appendChild(link)
+    link.click()
+
+    // cleanup
+    document.body.removeChild(link)
+    window.URL.revokeObjectURL(blobURL)
+  } catch (error) {
+    console.log('Failed to download image: ', error)
+  }
 }
 
 // show anime image when dom content loaded
@@ -82,4 +116,9 @@ document.querySelector('.full-screen-button').addEventListener('click', ()=>{
   } else{
     document.body.requestFullscreen()
   }
+})
+
+// download anime image when user click download button
+document.querySelector('.download-button').addEventListener('click', ()=>{
+  downloadImage()
 })
