@@ -2,6 +2,7 @@
 let nextImageURL = null    // next image
 let currentImageURL = null    // track current displayed image
 
+const uwu = new Audio('./public/audio/uwu-sound.mp3')
 // set loading state
 function setLoading(isLoading) {
   if (isLoading) {
