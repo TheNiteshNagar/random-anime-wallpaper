@@ -41,12 +41,12 @@ Powered by [nekos.best API](https://nekos.best/)
 
 ## 🚀 Usage
 
-**Live:** [theniteshnagar.github.io/random-anime-wallpaper-html-css-js](https://theniteshnagar.github.io/random-anime-wallpaper-html-css-js/)
+**Live:** [theniteshnagar.github.io/random-anime-wallpaper-html-css-js](https://theniteshnagar.github.io/random-anime-wallpaper/)
 
 **Local:**
 ```bash
-git clone https://github.com/theniteshnagar/random-anime-wallpaper-html-css-js.git
-cd random-anime-wallpaper-html-css-js
+git clone https://github.com/theniteshnagar/random-anime-wallpaper.git
+cd random-anime-wallpaper
 # Open index.html in browser
 ```
 
